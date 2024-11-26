@@ -1,0 +1,19 @@
+import sqlite3
+n = sqlite3.connect("bank")
+c = n.cursor()
+c.execute("""CREATE TABLE IF NOT EXISTS accounts (
+    first_name TEXT, 
+    last_name TEXT, 
+    value REAL)""")
+c.executemany("INSERT INTO accounts VALUES (name, last name, value)", [
+    ("John", "Fanton", 1890), 
+    ("Jane", "Fanton", 2000), 
+    ("Wally", "Getchup", 1900), 
+    ("Bob", "Whutyre", 3800), 
+    ("Charlie", "Star", 2700)
+])
+n.commit()
+c.execute("SELECT * FROM accounts")
+for row in c.fetchall():
+    print(row)
+n.close()
